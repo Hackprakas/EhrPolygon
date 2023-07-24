@@ -1,4 +1,6 @@
+import { ConnectWallet } from '@thirdweb-dev/react'
 import React from 'react'
+
 
 export default function card({title, description, onclick}) {
   return (
@@ -12,6 +14,8 @@ export default function card({title, description, onclick}) {
           </div>
           <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{title}</h2>
           <p class="leading-relaxed text-base">{description}</p>
+
+          <ConnectWallet style={{width: "100%", marginTop: "1rem"}} btnTitle="🦊 Connect Wallet" theme='light'/>
         </div>
       </div>
   )
