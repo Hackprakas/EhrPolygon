@@ -16,19 +16,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      
-        <div  className=' gradient-bg-welcome'>
-        <Nav />
-        <Providers>
-          {children}
-        </Providers>
+        <div className='gradient-bg-welcome'>
+          <Nav />
+          <Providers>
+            {children}
+          </Providers>
         </div>
         <div className='gradient-bg-footer'>
-        <Foot />
-        </div>
-      
-        
-        </body>
+          <Foot />
+        </div>        
+      </body>
     </html>
   )
 }
