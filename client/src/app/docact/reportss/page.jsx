@@ -8,9 +8,9 @@ export default function page() {
       <div className="container bg-white flex flex-col rounded-3xl h-96 sm:flex-row">
         <div className="left-side flex flex-1 flex-col justify-center items-center rounded-2xl bg-gray-900 p-4">
           <div className="details text-white  text-2xl mt-4">
-            <p>Name: John Doe</p>
-            <p>Age: 30</p>
-            <p>Height: 180 cm</p>
+            <p>Name: Prakash</p>
+            <p>Age: 19</p>
+            <p>Height: 177 cm</p>
             <p>Weight: 75 kg</p>
           </div>
         </div>
@@ -26,15 +26,11 @@ export default function page() {
             <tbody>
               {/* Add rows of data here */}
               <tr>
-                <td className="text-lg border-b-4">Report 1</td>
-                <td className="text-lg border-b-4">Prescription 1</td>
-                <td className="text-lg border-b-4">Dr. Smith</td>
+                <td className="text-lg border-b-4">Came with high fever and cold</td>
+                <td className="text-lg border-b-4">Paracetomol,Amoxylin</td>
+                <td className="text-lg border-b-4">Dr.Ram Ravi</td>
               </tr>
-              <tr>
-                <td className="text-lg border-b-4">Report 2</td>
-                <td className="text-lg border-b-4">Prescription 2</td>
-                <td className="text-lg border-b-4">Dr. Johnson</td>
-              </tr>
+             
               {/* Add more rows as needed */}
             </tbody>
           </table>

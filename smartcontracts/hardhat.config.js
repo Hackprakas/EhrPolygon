@@ -4,9 +4,9 @@ require("@nomiclabs/hardhat-waffle");
 module.exports = {
   solidity: "0.8.0",
   networks: {
-    MylocalGanache: {
-      url: 'HTTP://127.0.0.1:7545',
-      accounts: ['a3b2c3f670870d3c500354068a61760268e095fe41abeffa799bdfad5ec6c28c']
+    Mumbai: {
+      url: 'https://rpc-mumbai.maticvigil.com',
+      accounts: ['c4acd5fa1ad13df8ee866c290c81733c4521ec0206b4b5de1ec828b3f801c605']
     }
   }
 };

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useContractWrite, useContract, Web3Button } from "@thirdweb-dev/react";
 // import { contractAddress } from '@/app/utils/constant';
 // const contractAddress = "{{0xba6411C8EA9522213201c636900c1651bCA4Ed2c}}";
-const contractAddress = "0x856F3eD068fFCF48C1954637cCe7B50cf967990f";
+const contractAddress = "0xBCFDA20fE34995a63187d8Fc2F385e62B7050F54";
 export default function page() {
   
   const [hospitalName, setHospitalName] = useState("");
@@ -14,6 +14,9 @@ export default function page() {
     contract,
     "addHospital",
   );
+  if(error){
+    console.log(error);
+  }
   return (
     <div class="container mx-auto h-screen p-4">
   <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded">
@@ -31,7 +34,7 @@ export default function page() {
       <Web3Button
       contractAddress={contractAddress}
       // Calls the "setName" function on your smart contract with "My Name" as the first argument
-      action={() => mutateAsync({ args: [hospitalName,hospitalAddress] })}
+      action={() => mutateAsync({ args: ["kavery","0x6568FB15588d95Ea103221b17E30AA52c7ad6152"] })}
     >
       Add Hospital
     </Web3Button>

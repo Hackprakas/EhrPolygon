@@ -62,10 +62,8 @@ contract Hospital {
     }
 
     constructor() {
-        admin = msg.sender;
+        admin = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
     }
-
-    event hospitalDetails(string name, address hospitalAddress);
 
     // Function to add a new hospital with name and address
     function addHospital(string memory _name, address _hospitalAddress) public onlyAdmin {
@@ -73,10 +71,7 @@ contract Hospital {
             name: _name,
             hospitalAddress: _hospitalAddress
         }));
-        emit hospitalDetails(_name, _hospitalAddress);
     }
-
-    event doctorDetails(string name, address doctorAddress, uint256 hospitalIndex);
 
     // Function to add a new doctor with name, address, and hospital index
     function addDoctor(string memory _name, address _doctorAddress, uint256 _hospitalIndex) public onlyHospital {
@@ -87,10 +82,7 @@ contract Hospital {
             hospitalIndex: _hospitalIndex
         }));
         isDoctor[_doctorAddress]=true;
-        emit doctorDetails(_name, _doctorAddress, _hospitalIndex);
     }
-
-    event patientDetails(string name, uint256 age, uint256 height, uint256 weight, uint256 aadharno, string patientAddress);
 
     // Function for patients to add their details
     function addPatientDetails(string memory _name, uint256 _age, uint256 _height, uint256 _weight, uint256 _aadharNo,string memory _patientaddress) public {
@@ -109,7 +101,6 @@ contract Hospital {
             prescription: "",
             doctorname:""
         }));
-        emit patientDetails(_name, _age, _height, _weight, _aadharNo, _patientaddress);
     }
 
     
@@ -197,11 +188,11 @@ contract Hospital {
     return (names, ages, heights, weights, aadharNos, medicalReports, prescriptions, doctornames);
 }
 
-    function getPatientDetailsByAadhar(uint256 _aadharNo) public view returns (
-    string[] memory names,
-    uint256[] memory ages,
-    uint256[] memory heights,
-    uint256[] memory weights,
+   function getPatientDetailsByAadhar(uint256 _aadharNo) public view returns (
+    string memory name,
+    uint256 age,
+    uint256 height,
+    uint256 weight,
     string[] memory medicalReports,
     string[] memory prescriptions,
     string[] memory doctorNames
@@ -213,10 +204,6 @@ contract Hospital {
         }
     }
 
-    names = new string[](count);
-    ages = new uint256[](count);
-    heights = new uint256[](count);
-    weights = new uint256[](count);
     medicalReports = new string[](count);
     prescriptions = new string[](count);
     doctorNames = new string[](count);
@@ -224,10 +211,12 @@ contract Hospital {
     uint256 index = 0;
     for (uint256 i = 0; i < patients.length; i++) {
         if (patients[i].aadharNo == _aadharNo) {
-            names[index] = patients[i].name;
-            ages[index] = patients[i].age;
-            heights[index] = patients[i].height;
-            weights[index] = patients[i].weight;
+            if (index == 0) {
+                name = patients[i].name;
+                age = patients[i].age;
+                height = patients[i].height;
+                weight = patients[i].weight;
+            }
             medicalReports[index] = patients[i].medicalReport;
             prescriptions[index] = patients[i].prescription;
             doctorNames[index] = patients[i].doctorname;
@@ -235,7 +224,7 @@ contract Hospital {
         }
     }
 
-    return (names, ages, heights, weights, medicalReports, prescriptions, doctorNames);
+    return (name, age, height, weight, medicalReports, prescriptions, doctorNames);
 }
 
    }
