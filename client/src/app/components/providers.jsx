@@ -5,7 +5,7 @@ import { ThirdwebProvider, metamaskWallet } from "@thirdweb-dev/react";
 
 export default function Providers({children}) {
   return (
-    <ThirdwebProvider activeChain="ethereum" supportedWallets={[metamaskWallet()]}>
+    <ThirdwebProvider activeChain="mumbai" clientId="d8936f6f6d303ca1a545dacd3ec64a90" supportedWallets={[metamaskWallet()]}>
       {children}
     </ThirdwebProvider>
   )
