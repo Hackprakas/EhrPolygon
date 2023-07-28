@@ -2,10 +2,13 @@
 import React from 'react'
 import Card2 from '../components/card2'
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 export default function page() {
   const [showPopup, setShowPopup] = useState(false);
   const [aadharNumber, setAadharNumber] = useState('');
+  const router = useRouter();
 
     const handleCardClick = () => {
         console.log('Card clicked!');
@@ -38,7 +41,7 @@ export default function page() {
     </div>
     <div class="flex flex-wrap -m-4">
       
-      <Card2 titles={"ADD REPORT"} descirptions={"Click to add report"} onclick={handleCardClick}/>
+      <Card2 titles={"ADD REPORT"} descirptions={"Click to add report"} onclick={()=>router.push('/docact/addpat')}/>
       <Card2 titles={"VIEW PATIENTS"} descirptions={"View the patients by the name and number"} onclick={openPopup}/>
       {showPopup && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">

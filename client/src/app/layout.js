@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Nav from './components/nav'
 import Foot from './components/foot'
 import Providers from './components/providers'
+// import Provide from './components/provide'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,14 +18,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className='gradient-bg-welcome'>
-          <Nav />
           <Providers>
+            {/* <Provide /> */}
+            <Nav />
             {children}
+            {/* <Provide /> */}
           </Providers>
         </div>
         <div className='gradient-bg-footer'>
           <Foot />
-        </div>        
+        </div>
       </body>
     </html>
   )

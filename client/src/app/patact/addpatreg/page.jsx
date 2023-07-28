@@ -1,18 +1,21 @@
 "use client"
 
 import React from 'react'
-import { useContractWrite, useContract, Web3Button } from "@thirdweb-dev/react";
-// import { contractAddress } from '@/app/utils/constant';
-// const contractAddress = "{{0xba6411C8EA9522213201c636900c1651bCA4Ed2c}}";
-const contractAddress = "0xBCFDA20fE34995a63187d8Fc2F385e62B7050F54";
+import { Web3Button } from "@thirdweb-dev/react";
+import {contractAddress} from '../../utils/constant.jsx'
+import { useState } from 'react';
+
 
 export default function page() {
-  const { contract } = useContract(contractAddress);
+    const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [aadharNo, setAadharNo] = useState(0);
+  const [patientaddress, setPatientAddress] = useState("");
+  console.log(age);
+
   
-  const { mutateAsync, isLoading, error } = useContractWrite(
-    contract,
-    "addDoctor",
-  );
   return (
     <div>
       <div>
@@ -52,6 +55,8 @@ export default function page() {
                 aria-label="Enter Name"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 placeholder="William Smith"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
@@ -61,6 +66,8 @@ export default function page() {
                 type="number"
                 aria-label="Enter Age"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
                 placeholder="69"
               />
             </div>
@@ -74,6 +81,8 @@ export default function page() {
                 aria-label="Enter Height"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 placeholder="169"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
               />
             </div>
             <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
@@ -84,6 +93,8 @@ export default function page() {
                 aria-label="Enter weight"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 placeholder="69"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
               />
             </div>
           </div>
@@ -96,6 +107,8 @@ export default function page() {
                 aria-label="Enter aadhar number"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
                 placeholder="538183925574"
+                value={aadharNo}
+                onChange={(e) => setAadharNo(e.target.value)}
               />
             </div>
             <div className="flex flex-col md:ml-12 md:mt-0 mt-8">
@@ -104,7 +117,10 @@ export default function page() {
                 type="name"
                 aria-label="Enter address"
                 className="w-64 bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200"
-                placeholder="San Diego, CA, USA" />
+                placeholder="San Diego, CA, USA" 
+                value={patientaddress}
+                onChange={(e) => setPatientAddress(e.target.value)}/>
+                
             </div>
           </div>
           <div className="mt-12">
@@ -143,10 +159,11 @@ export default function page() {
           </div>
           <Web3Button
       contractAddress={contractAddress}
-      // Calls the "setName" function on your smart contract with "My Name" as the first argument
-      action={() => mutateAsync({ args: ["kavery","0x6568FB15588d95Ea103221b17E30AA52c7ad6152"] })}
+      action={(contract) => {
+        contract.call("addPatientDetails", [name, age, height, weight, aadharNo, patientaddress])
+      }}
     >
-      submit
+      addPatientDetails
     </Web3Button>
         </div>
       </div>

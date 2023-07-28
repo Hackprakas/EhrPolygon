@@ -2,24 +2,15 @@
 
 import React from 'react'
 import { useState } from 'react';
-import { useContractWrite, useContract, Web3Button } from "@thirdweb-dev/react";
-// import { contractAddress } from '@/app/utils/constant';
-// const contractAddress = "{{0xba6411C8EA9522213201c636900c1651bCA4Ed2c}}";
-const contractAddress = "0xBCFDA20fE34995a63187d8Fc2F385e62B7050F54";
+import { Web3Button } from "@thirdweb-dev/react";
+import {contractAddress} from '../../utils/constant.jsx'
+
 
 export default function page() {
-  // const [doctorName, setdoctorName] = useState("");
-  // const [doctoraddress, setdoctorAddress] = useState("");
-  // const [hospitalindex, sethospitalindex] = useState("");
-  const { contract } = useContract(contractAddress);
-  
-  const { mutateAsync, isLoading, error } = useContractWrite(
-    contract,
-    "addDoctor",
-  );
-  if(error){
-    console.log(error);
-  }
+   const [doctorName, setdoctorName] = useState("");
+  const [doctoraddress, setdoctorAddress] = useState("");
+  const [hospitalindex, sethospitalindex] = useState("");
+ 
   return (
     <div class="container mx-auto h-screen p-4">
   <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded">
@@ -27,27 +18,26 @@ export default function page() {
     <form >
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="bookName">doctor Name</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bookName" type="text" placeholder="Enter doctor name"  />
+        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bookName" type="text" value={doctorName} placeholder="Enter doctor name" onChange={(e)=>setdoctorName(e.target.value)} />
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="authorName">doctor address</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="authorName" type="text"  placeholder="Enter ethereum address" />
+        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="authorName" type="text" value={doctoraddress}  placeholder="Enter ethereum address" onChange={(e)=>setdoctorAddress(e.target.value)} />
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="authorName">hospital index</label>
-        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="authorName" type="text"  placeholder="Enter hospital index" />
+        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="authorName" type="text" value={hospitalindex} placeholder="Enter hospital index"  onChange={(e)=>sethospitalindex(e.target.value)}/>
       </div>
-  
-      
-      <Web3Button
-      contractAddress={contractAddress}
-      // Calls the "setName" function on your smart contract with "My Name" as the first argument
-      action={() => mutateAsync({ args: ["kavery","0x6568FB15588d95Ea103221b17E30AA52c7ad6152"] })}
-    >
-      Add Doctor
-    </Web3Button>
     </form>
+    <Web3Button
+      contractAddress={contractAddress}
+      action={(contract) => {
+        contract.call("addDoctor", [doctorName, doctoraddress, hospitalindex])
+      }}
+    >
+      addDoctor
+    </Web3Button>
   </div>
 </div>
   )
-}
+  }
