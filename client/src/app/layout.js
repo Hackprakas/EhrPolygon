@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import Nav from './components/nav'
 import Foot from './components/foot'
 import Providers from './components/providers'
-// import Provide from './components/provide'
+import { AadharProvider } from './context/aadhar'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className='gradient-bg-welcome'>
           <Providers>
-            {/* <Provide /> */}
-            <Nav />
-            {children}
-            {/* <Provide /> */}
+            <AadharProvider>
+              <Nav />
+              {children}
+            </AadharProvider>
           </Providers>
         </div>
         <div className='gradient-bg-footer'>

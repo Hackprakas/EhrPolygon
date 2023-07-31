@@ -62,11 +62,11 @@ contract Hospital {
     }
 
     constructor() {
-        admin = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+        admin = msg.sender;
     }
 
     // Function to add a new hospital with name and address
-    function addHospital(string memory _name, address _hospitalAddress) public onlyAdmin {
+    function addHospital(string memory _name, address _hospitalAddress) public  {
         hospitals.push(HospitalInfo({
             name: _name,
             hospitalAddress: _hospitalAddress

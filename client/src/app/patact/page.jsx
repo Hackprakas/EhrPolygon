@@ -3,22 +3,17 @@ import React from 'react'
 import Card2 from '../components/card2'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useContractWrite, useContract, Web3Button } from "@thirdweb-dev/react";
-// import { contractAddress } from '@/app/utils/constant';
-// const contractAddress = "{{0xba6411C8EA9522213201c636900c1651bCA4Ed2c}}";
-const contractAddress = "0xBCFDA20fE34995a63187d8Fc2F385e62B7050F54";
+import AadharContext from '../context/aadhar';
+import { useContext } from 'react';
+
 
 
 export default function page() {
   const [showPopup, setShowPopup] = useState(false);
-  const [aadharNumber, setAadharNumber] = useState('');
-  const router = useRouter();
-  const { contract } = useContract(contractAddress);
+  const {aadharNumber,setAadharNumber} = useContext(AadharContext);
   
-  const { mutateAsync, isLoading, error } = useContractWrite(
-    contract,
-    "addDoctor",
-  );
+  const router = useRouter();
+ 
 
     const handleCardClick = () => {
         router.push('/patact/addpatreg');
@@ -39,7 +34,9 @@ export default function page() {
         };
       
         const handleSubmit = () => {
-          // Handle form submission
+          router.push('/patact/patreport')
+         
+          
         };
     return (<>
     
@@ -70,13 +67,12 @@ export default function page() {
               value={aadharNumber}
               onChange={handleAadharChange}
             />
-            <Web3Button
-      contractAddress={contractAddress}
-      // Calls the "setName" function on your smart contract with "My Name" as the first argument
-      action={() => mutateAsync({ args: ["kavery","0x6568FB15588d95Ea103221b17E30AA52c7ad6152"] })}
-    >
-      submit
-    </Web3Button>
+           <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
           </div>
         </div>
       )}
@@ -84,6 +80,7 @@ export default function page() {
     </div>
   </div>
 </section>
-</>
+    </>
+
     )
 }

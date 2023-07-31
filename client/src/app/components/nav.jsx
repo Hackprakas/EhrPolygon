@@ -17,7 +17,7 @@ export default function nav() {
       <a className="mr-5 text-white hover:text-gray-900">About</a>
       <a className="mr-5 text-white hover:text-gray-900">Contact</a>
     </nav>
-    <ConnectWallet style={{ width: "100%", marginTop: "1rem" }} btnTitle="🦊 Connect Wallet" theme='light' />
+    <ConnectWallet style={{ width: "15%", marginTop: "1rem" }} btnTitle="🦊 Connect Wallet" theme='light' />
   </div>
 </header>
   )

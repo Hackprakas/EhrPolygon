@@ -2,13 +2,21 @@
 import React from 'react'
 import Card2 from '../components/card2'
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import AadharContext from '../context/aadhar';
+import { useContext } from 'react';
+
+
 
 export default function page() {
   const [showPopup, setShowPopup] = useState(false);
-  const [aadharNumber, setAadharNumber] = useState('');
+  const {aadharNumber,setAadharNumber} = useContext(AadharContext);
+  
+  const router = useRouter();
+ 
 
     const handleCardClick = () => {
-        console.log('Card clicked!');
+        router.push('/orgact/addcoc');
         // Add your custom logic here to handle the click event.
         };
         
@@ -26,20 +34,22 @@ export default function page() {
         };
       
         const handleSubmit = () => {
-          // Handle form submission
+          router.push('/orgact/medicalrecord')
+         
+          
         };
     return (<>
     
     <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">HELLO HOSPITAL</h2>
+      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">HELLO ORGANIZATION</h2>
       <h1 class="sm:text-3xl text-2xl font-medium title-font text-white">Please choose one of the following</h1>
     </div>
     <div class="flex flex-wrap -m-4">
       
-      <Card2 titles={"ADD DOCTOR"} descirptions={"Click to add report"} onclick={handleCardClick}/>
-      <Card2 titles={"VIEW PATIENTS"} descirptions={"View the patients by the name and number"} onclick={openPopup}/>
+      <Card2 titles={"ADD HOSPITAL"} descirptions={"Click to add Hospital"} onclick={handleCardClick}/>
+      <Card2 titles={"VIEW RECORDS"} descirptions={"View the patients by the name and number"} onclick={openPopup}/>
       {showPopup && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-6 w-80">
@@ -49,7 +59,7 @@ export default function page() {
             >
               &times;
             </span>
-            <h2 className="text-lg font-bold mb-4">Enter Aadhar Number</h2>
+            <h2 className="text-lg font-bold mb-4">Enter Your Aadhar Number</h2>
             <input
               type="text"
               className="border border-gray-300 rounded-md p-2 w-full mb-4"
@@ -57,7 +67,7 @@ export default function page() {
               value={aadharNumber}
               onChange={handleAadharChange}
             />
-            <button
+           <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
               onClick={handleSubmit}
             >
@@ -70,6 +80,7 @@ export default function page() {
     </div>
   </div>
 </section>
-</>
+    </>
+
     )
 }

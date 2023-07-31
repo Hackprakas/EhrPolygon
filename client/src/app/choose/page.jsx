@@ -67,7 +67,7 @@ export default function page() {
                                 </svg>
                             </div>
                             <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Patient</h2>
-                            <p class="leading-relaxed text-base">Please sign in using your metamask account</p>
+                            <p class="leading-relaxed text-base">REGISTER DETAILS OR VIEW RECORD</p>
 
 
                         </div>
