@@ -8,7 +8,7 @@ const hre = require("hardhat");
 
 const main = async () => {
   // Hardhat always runs the compile task when running scripts with its command
-  const Hospital= await hre.ethers.getContractFactory("Hospital");
+  const Hospital= await hre.ethers.getContractFactory("SimpleNFT");
   const healthContract = await Hospital.deploy();
   await healthContract.deployed();
   console.log("Health deployed to:", healthContract.address);
